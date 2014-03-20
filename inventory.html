@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<title>Unicode Search</title>
+<meta charset=utf-8>
+<script src=js/jquery.js></script>
+<script src=js/underscore.js></script>
+<script src=js/backbone.js></script>
+<script src=js/d3.v3.js></script>
+<script src=js/prefixfree.js></script>
+
+<script src=js/fuse.js></script>
+
+<link rel=stylesheet href=css/style.css />
+<link rel=stylesheet href=css/mobile.css />
+
+<style>
+input#search { 
+  width: 90%;
+  font-size:large;
+  display:block;
+  margin:0 auto;
+}
+
+#results li { 
+  margin-bottom: .5em;  
+}
+
+.unichar { 
+  font-size: xx-large;
+  display:inline-block; 
+  border-radius: 4px;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  background:#f5f5f5;
+  border: 1px solid #d5d5d5;
+  text-align:center;
+  box-shadow:-2px 2px 3px #858585
+}
+
+</style>
+</head>
+<body>
+
+<script type=text/html id=unicharTemplate>
+<li>
+  <span class=unichar><%= unichar %></span>
+  <code class=code_value>U+<%=  Code_value %></code>
+  <span class=characterName><%=  Character_name %></span>
+</li>
+</script>
+ 
+<main>
+  <input autofocus type=search id=search>
+  <ol id=results></ol>
+</main>
+
+
+<script src=js/app.js> </script>
+
+
+</body>
+</html>
