@@ -26,28 +26,43 @@ input#search {
   margin-bottom: .5em;  
 }
 
-.unichar { 
-  font-size: xx-large;
+li { 
   display:inline-block; 
   border-radius: 4px;
-  width: 2em;
-  height: 2em;
-  line-height: 2em;
   background:#f5f5f5;
   border: 1px solid #d5d5d5;
   text-align:center;
-  box-shadow:-2px 2px 3px #858585
+  box-shadow:-2px 2px 2px #878787;
+  min-width: 2em;
+  padding: .5em;
+}
+
+li code { 
+  font-size: small;
+  font-family: "Helvetica", sans-serif;
+  color: #6c6c6c;
+}
+li p { 
+  font-size:xx-large;
+  line-height: 1;
 }
 
 </style>
 </head>
 <body>
 
-<script type=text/html id=unicharTemplate>
+<script type=text/html id=wasunicharTemplate>
 <li>
   <span class=unichar><%= unichar %></span>
   <code class=code_value>U+<%=  Code_value %></code>
   <span class=characterName><%=  Character_name %></span>
+</li>
+</script>
+
+<script type=text/html id=unicharTemplate>
+<li  class=unichar title="<%=  Character_name %>">
+  <code>U+<%=  Code_value %></code>
+  <p><%= unichar %></p>
 </li>
 </script>
  
