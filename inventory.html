@@ -6,7 +6,6 @@
 <script src=js/jquery.js></script>
 <script src=js/underscore.js></script>
 <script src=js/backbone.js></script>
-<script src=js/d3.v3.js></script>
 <script src=js/prefixfree.js></script>
 
 <script src=js/fuse.js></script>
@@ -15,6 +14,43 @@
 <link rel=stylesheet href=css/mobile.css />
 
 <style>
+
+* {
+  box-sizing: border-box;
+}
+
+html { 
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+body { 
+  margin: 0;
+
+  flex: 1;
+  display:flex;
+}
+
+main { 
+  padding: 1em;
+  flex: 4;
+}
+
+aside { 
+  height:  100%;
+  padding: 1em;
+  background:#a3a3a3;
+  margin: 0;
+  flex: 1;
+  font-family: "Gentium Basic";
+}
+
+p { 
+  font-family: "Gentium Plus", sans-serif;
+}
+
+
 input#search { 
   width: 90%;
   font-size:large;
@@ -47,6 +83,17 @@ li p {
   line-height: 1;
 }
 
+button#help { 
+  border-radius: 50%;
+  border: 0;
+  background: #6c6c6c;
+  color:white;
+  font-style:italic;
+  font-size: large;
+  float:right;
+  cursor: pointer;
+  font-family: "Georgia";
+}
 </style>
 </head>
 <body>
@@ -67,13 +114,20 @@ li p {
 </script>
  
 <main>
-  <input autofocus type=search id=search>
+  <button id=help>i</button>
+  <input placeholder="Search Unicode names" autofocus type=search id=search>
   <ol id=results></ol>
 </main>
 
+<aside>
+  <h1>Unicode Palette Builder</h1>
+  <p>This is a tool for selecting and collecting sets of characters from Unicode.
+  <p>Unicode character names, or substrings of those names, may be entered in the search box.
+</aside>
 
 <script src=js/app.js> </script>
 
 
 </body>
 </html>
+
