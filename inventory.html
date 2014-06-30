@@ -34,7 +34,8 @@ body {
 
 main { 
   padding: 1em;
-  flex: 4;
+  flex: 1;
+  overflow-y: auto;
 }
 
 aside { 
@@ -71,6 +72,7 @@ li {
   box-shadow:-2px 2px 2px #878787;
   min-width: 2em;
   padding: .5em;
+  cursor: pointer;
 }
 
 li code { 
@@ -83,17 +85,6 @@ li p {
   line-height: 1;
 }
 
-button#help { 
-  border-radius: 50%;
-  border: 0;
-  background: #6c6c6c;
-  color:white;
-  font-style:italic;
-  font-size: large;
-  float:right;
-  cursor: pointer;
-  font-family: "Georgia";
-}
 </style>
 </head>
 <body>
@@ -107,14 +98,13 @@ button#help {
 </script>
 
 <script type=text/html id=unicharTemplate>
-<li  class=unichar title="<%=  Character_name %>">
+<li  id="U<%= Code_value %>" class=unichar title="<%=  Character_name %>">
   <code>U+<%=  Code_value %></code>
   <p><%= unichar %></p>
 </li>
 </script>
  
 <main>
-  <button id=help>i</button>
   <input placeholder="Search Unicode names" autofocus type=search id=search>
   <ol id=results></ol>
 </main>
@@ -123,6 +113,10 @@ button#help {
   <h1>Unicode Palette Builder</h1>
   <p>This is a tool for selecting and collecting sets of characters from Unicode.
   <p>Unicode character names, or substrings of those names, may be entered in the search box.
+
+  <div id=palette>
+
+  </div>
 </aside>
 
 <script src=js/app.js> </script>

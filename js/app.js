@@ -17,6 +17,7 @@ app.Unicode = Backbone.Collection.extend({
 
   initialize: function(){
     this.deferred = this.fetch()
+    //this.fuse = new Fuse(this.words);
   },
 
   url: '../UnicodeData.json',
@@ -31,22 +32,54 @@ app.Unicode = Backbone.Collection.extend({
 
 })
 
-app.PaletteView = Backbone.View.extend({
+// Set of selected characters
+app.Palette = Backbone.Collection.extend({
 
+  model: app.Unichar
+
+})
+
+
+app.PaletteView = Backbone.View.extend({
+  el: '#palette',
+
+  collection: app.palette,
+
+  initialize: function(options){
+    this.collection.on('change', this.render, this) 
+  },
+
+  render: function(){
+    var self = this;
+    this.ol.innerHTML = '';
+    this.collection.forEach(function(unichar){
+      var view = self.template(unichar.toJSON());
+      $(self.ol).append(view);
+    })
+    return this;
+  }
 })
 
 app.SearchView = Backbone.View.extend({
 
   events: {
-    'keyup input': 'keyup' 
+    'keyup input': 'keyup' ,
+    'click li': 'select' 
   },
 
   initialize: function(){
-    //this.listenTo(this.collection, 'search', 
-    _.bindAll(this, 'keyup');
+    _.bindAll(this, 'render', 'keyup', 'select');
+
     this.template = _.template($('#unicharTemplate').html());
+
     this.input = this.el.querySelector('input');
     this.ol = this.el.querySelector('ol');
+  },
+
+  select: function(ev){
+    var uid = ev.currentTarget.id;
+    var match = this.collection.where({ Code_value: uid.replace('U','')});
+    app.palette.add(match);
   },
 
   keyup: function(ev){
@@ -76,16 +109,15 @@ app.SearchView = Backbone.View.extend({
 app.unicode = new app.Unicode();
 app.unicode.fetch();
 
-app.palette = new app.PaletteView({
-  el: '#palette',
-  initialize: function(options){
-    
-  }
-})
+app.palette = new app.Palette( );
+
+app.paletteView = new app.PaletteView({
+  collection : app.palette
+});
 
 app.search = new app.SearchView({
   el: 'main',
-  palette: app.palette,
+  //palette: app.palette,
   collection: app.unicode
 });
 
