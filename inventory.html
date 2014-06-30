@@ -63,7 +63,7 @@ input#search {
   margin-bottom: .5em;  
 }
 
-li { 
+ol#results li { 
   display:inline-block; 
   border-radius: 4px;
   background:#f5f5f5;
@@ -85,9 +85,43 @@ li p {
   line-height: 1;
 }
 
+#palatte ul { 
+}
+
+#palatte .letter {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+}
+
+#palette .letter h2 { 
+  margin-right: 1em;
+  width: 1.5em;
+  text-align:center;
+  font-size: 40px;
+}
+
+#palette .letter img {
+  margin-right: 1em;
+}
+
+#palette .letter div {
+  flex: 1;
+}
+
+
 </style>
 </head>
 <body>
+<script type=text/html id=letterTemplate>
+  <li class="letter">
+    <h2><%= unichar %></h2>
+    <div>
+      <code>U+<%= Code_value %></code>
+      <p><%= Character_name %></p>
+    </div>
+  </li>
+</script>
 
 <script type=text/html id=wasunicharTemplate>
 <li>
@@ -114,9 +148,9 @@ li p {
   <p>This is a tool for selecting and collecting sets of characters from Unicode.
   <p>Unicode character names, or substrings of those names, may be entered in the search box.
 
-  <div id=palette>
+  <ol id=palette>
 
-  </div>
+  </ol>
 </aside>
 
 <script src=js/app.js> </script>

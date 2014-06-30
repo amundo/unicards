@@ -46,17 +46,16 @@ app.PaletteView = Backbone.View.extend({
   collection: app.palette,
 
   initialize: function(options){
-    this.collection.on('change', this.render, this) 
+    this.template = _.template($('#letterTemplate').html()); 
+    this.collection.on('add remove change', this.render, this) ;
   },
 
   render: function(){
     var self = this;
-    this.ol.innerHTML = '';
-    this.collection.forEach(function(unichar){
-      var view = self.template(unichar.toJSON());
-      $(self.ol).append(view);
+    this.el.innerHTML = '';
+    this.collection.each(function(c){
+      $(self.el).append(self.template(c.toJSON()));
     })
-    return this;
   }
 })
 
