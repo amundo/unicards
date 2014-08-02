@@ -41,13 +41,24 @@ app.Palette = Backbone.Collection.extend({
 
 
 app.PaletteView = Backbone.View.extend({
+  events : {
+    'click #clear': 'clear'
+  },
+
   el: '#palette',
 
   collection: app.palette,
 
   initialize: function(options){
+    _.bindAll(this, 'clear');
     this.template = _.template($('#letterTemplate').html()); 
+    this.list = this.el.querySelector('ol');
     this.collection.on('add remove change', this.render, this) ;
+  },
+
+  clear: function(){
+console.log('clear');
+    this.collection.each(function(m){m.destroy()}) 
   },
 
   render: function(){

@@ -34,7 +34,7 @@ body {
 
 main { 
   padding: 1em;
-  flex: 1;
+  flex: 5;
   overflow-y: auto;
 }
 
@@ -43,7 +43,7 @@ aside {
   padding: 1em;
   background:#a3a3a3;
   margin: 0;
-  flex: 1;
+  flex: 5;
   font-family: "Gentium Basic";
 }
 
@@ -115,11 +115,7 @@ li p {
 <body>
 <script type=text/html id=letterTemplate>
   <li class="letter">
-    <h2><%= unichar %></h2>
-    <div>
-      <code>U+<%= Code_value %></code>
-      <p><%= Character_name %></p>
-    </div>
+    <strong><%= unichar %></strong> <code>U+<%= Code_value %></code> <%= Character_name %>
   </li>
 </script>
 
@@ -148,9 +144,10 @@ li p {
   <p>This is a tool for selecting and collecting sets of characters from Unicode.
   <p>Unicode character names, or substrings of those names, may be entered in the search box.
 
-  <ol id=palette>
+  <button id=clear>clear</button>
+  <div id=palette>
 
-  </ol>
+  </div>
 </aside>
 
 <script src=js/app.js> </script>
